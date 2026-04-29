@@ -1,0 +1,28 @@
+# C语言编译产物
+*.o
+*.obj
+*.exe
+*.out
+*.a
+*.lib
+*.so
+*.dll
+*.dSYM/
+*.elf
+*.bin
+
+# VSCode配置文件
+.vscode/
+*.user
+*.suo
+
+# 临时文件
+*~
+*.swp
+*.swo
+*.tmp
+*.bak
+
+# 日志和缓存文件
+*.log
+*.cache
