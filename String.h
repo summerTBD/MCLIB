@@ -37,7 +37,33 @@ struct String {
 	const StringOps *ops;
 };
 
-/* ---------- 内部实现函数（static）---------- */
+/* ====== 所有 static 函数前向声明 ====== */
+static void string_init(String *self);
+static void string_destroy(String *self);
+static void string_push(String *self, const char *str);
+static void string_pop_back(String *self);
+static void string_clear(String *self);
+static size_t string_size(String *self);
+static size_t string_capacity(String *self);
+static const char *string_c_str(String *self);
+static void string_assign(String *self, const char *str);
+static char *string_front(String *self);
+static char *string_back(String *self);
+
+/* ---------- 默认操作表（提前到这里，因为声明已可见） ---------- */
+static const StringOps string_default_ops = {.init = string_init,
+											 .destroy = string_destroy,
+											 .push = string_push,
+											 .pop_back = string_pop_back,
+											 .clear = string_clear,
+											 .size = string_size,
+											 .capacity = string_capacity,
+											 .c_str = string_c_str,
+											 .assign = string_assign,
+											 .front = string_front,
+											 .back = string_back};
+
+/* ---------- 函数实现 ---------- */
 static void string_init(String *self) {
 	self->data = NULL;
 	self->size = 0;
@@ -59,7 +85,6 @@ static void string_push(String *self, const char *str) {
 
 	/* 检查溢出 */
 	if (add_len > (size_t)-1 - self->size) {
-		/* 如果发生溢出则释放资源后断言失败 */
 		string_destroy(self);
 		assert(0 && "String size overflow");
 	}
@@ -67,7 +92,6 @@ static void string_push(String *self, const char *str) {
 	size_t needed = self->size + add_len + 1; /* +1 for '\0' */
 
 	if (needed > self->capacity) {
-		/* 计算新容量：至少是当前的两倍，放得下 needed */
 		size_t new_cap =
 			self->capacity == 0 ? STRING_DEFAULT_CAPACITY : self->capacity * 2;
 		while (new_cap < needed) {
@@ -117,18 +141,5 @@ static char *string_back(String *self) {
 	assert(self->size > 0);
 	return self->data + self->size - 1;
 }
-
-/* ---------- 默认操作表（static 全局） ---------- */
-static const StringOps string_default_ops = {.init = string_init,
-											 .destroy = string_destroy,
-											 .push = string_push,
-											 .pop_back = string_pop_back,
-											 .clear = string_clear,
-											 .size = string_size,
-											 .capacity = string_capacity,
-											 .c_str = string_c_str,
-											 .assign = string_assign,
-											 .front = string_front,
-											 .back = string_back};
 
 #endif /* STRING_H */

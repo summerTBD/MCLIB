@@ -4,20 +4,6 @@
 #include <assert.h>
 #include <stdlib.h>
 
-/**
- * 宏 DEFINE_LIST(TYPE, NAME) —— 生成针对 TYPE 类型的双向链表
- *
- * 队列类型名   : List_##NAME
- * 操作表类型   : ListOps_##NAME
- * 操作表实例   : list_##NAME##_ops
- *
- * 使用方法：
- *   1. 包含此头文件
- *   2. 在需要的源文件中调用一次 DEFINE_LIST(int, int) 等
- *   3. 声明 List_int lst; 并使用
- *
- * 所有函数为 static，可安全放在头文件中多文件包含。
- */
 #define DEFINE_LIST(TYPE, NAME)                                                \
 	/* ---------- 节点结构 ---------- */                                       \
 	typedef struct ListNode_##NAME {                                           \
@@ -53,6 +39,36 @@
 		const ListOps_##NAME *ops;                                             \
 	};                                                                         \
                                                                                \
+	/* ====== 所有 static 函数前向声明 ====== */                               \
+	static ListNode_##NAME *list_##NAME##_node_ptr(List_##NAME *self,          \
+												   size_t index);              \
+	static void list_##NAME##_init(List_##NAME *self);                         \
+	static void list_##NAME##_destroy(List_##NAME *self);                      \
+	static int list_##NAME##_empty(List_##NAME *self);                         \
+	static TYPE list_##NAME##_get(List_##NAME *self, size_t index);            \
+	static void list_##NAME##_set(List_##NAME *self, size_t index, TYPE val);  \
+	static void list_##NAME##_push(List_##NAME *self, TYPE val);               \
+	static void list_##NAME##_insert(List_##NAME *self, size_t index,          \
+									 TYPE val);                                \
+	static TYPE list_##NAME##_pop(List_##NAME *self);                          \
+	static TYPE list_##NAME##_remove_at(List_##NAME *self, size_t index);      \
+	static size_t list_##NAME##_size(List_##NAME *self);                       \
+	static void list_##NAME##_clear(List_##NAME *self);                        \
+                                                                               \
+	/* ---------- 默认操作表实例（提前到这里，前向声明已可见） ---------- */   \
+	static const ListOps_##NAME list_##NAME##_ops = {                          \
+		.init = list_##NAME##_init,                                            \
+		.destroy = list_##NAME##_destroy,                                      \
+		.empty = list_##NAME##_empty,                                          \
+		.get = list_##NAME##_get,                                              \
+		.set = list_##NAME##_set,                                              \
+		.push = list_##NAME##_push,                                            \
+		.insert = list_##NAME##_insert,                                        \
+		.pop = list_##NAME##_pop,                                              \
+		.remove_at = list_##NAME##_remove_at,                                  \
+		.size = list_##NAME##_size,                                            \
+		.clear = list_##NAME##_clear};                                         \
+                                                                               \
 	/* ---------- 内部定位辅助函数 ---------- */                               \
 	static ListNode_##NAME *list_##NAME##_node_ptr(List_##NAME *self,          \
 												   size_t index) {             \
@@ -70,7 +86,7 @@
 		return cur;                                                            \
 	}                                                                          \
                                                                                \
-	/* ---------- 实现函数 ---------- */                                       \
+	/* ---------- 其他函数实现 ---------- */                                   \
 	static void list_##NAME##_init(List_##NAME *self) {                        \
 		self->head = NULL;                                                     \
 		self->tail = NULL;                                                     \
@@ -195,20 +211,6 @@
 		self->head = NULL;                                                     \
 		self->tail = NULL;                                                     \
 		self->count = 0;                                                       \
-	}                                                                          \
-                                                                               \
-	/* ---------- 默认操作表实例 ---------- */                                 \
-	static const ListOps_##NAME list_##NAME##_ops = {                          \
-		.init = list_##NAME##_init,                                            \
-		.destroy = list_##NAME##_destroy,                                      \
-		.empty = list_##NAME##_empty,                                          \
-		.get = list_##NAME##_get,                                              \
-		.set = list_##NAME##_set,                                              \
-		.push = list_##NAME##_push,                                            \
-		.insert = list_##NAME##_insert,                                        \
-		.pop = list_##NAME##_pop,                                              \
-		.remove_at = list_##NAME##_remove_at,                                  \
-		.size = list_##NAME##_size,                                            \
-		.clear = list_##NAME##_clear}
+	}
 
 #endif /* LIST_H */
