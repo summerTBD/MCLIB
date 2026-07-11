@@ -14,19 +14,29 @@
 typedef struct String String;
 typedef struct StringOps StringOps;
 
-/* ---------- 操作表 ---------- */
+/* ===================================================================
+ * X-Macro: 操作列表
+ * 格式: X(name, ret_type, full_params)
+ * full_params 是包含 String *self 在内的完整参数列表（带括号）
+ * =================================================================== */
+#define STRING_OPS                          \
+	X(init,     void,        (String *self))                \
+	X(destroy,  void,        (String *self))                \
+	X(push,     void,        (String *self, const char *str)) \
+	X(pop_back, void,        (String *self))                \
+	X(clear,    void,        (String *self))                \
+	X(size,     size_t,      (String *self))                \
+	X(capacity, size_t,      (String *self))                \
+	X(c_str,    const char *, (String *self))                \
+	X(assign,   void,        (String *self, const char *str)) \
+	X(front,    char *,      (String *self))                \
+	X(back,     char *,      (String *self))
+
+/* ---------- 操作表（由 X-Macro 生成） ---------- */
 struct StringOps {
-	void (*init)(String *self);
-	void (*destroy)(String *self);
-	void (*push)(String *self, const char *str);
-	void (*pop_back)(String *self);
-	void (*clear)(String *self);
-	size_t (*size)(String *self);
-	size_t (*capacity)(String *self);
-	const char *(*c_str)(String *self);
-	void (*assign)(String *self, const char *str);
-	char *(*front)(String *self);
-	char *(*back)(String *self);
+#define X(name, ret, params) ret (*name)params;
+	STRING_OPS
+#undef X
 };
 
 /* ---------- 字符串主结构 ---------- */
@@ -37,31 +47,17 @@ struct String {
 	const StringOps *ops;
 };
 
-/* ====== 所有 static 函数前向声明 ====== */
-static void string_init(String *self);
-static void string_destroy(String *self);
-static void string_push(String *self, const char *str);
-static void string_pop_back(String *self);
-static void string_clear(String *self);
-static size_t string_size(String *self);
-static size_t string_capacity(String *self);
-static const char *string_c_str(String *self);
-static void string_assign(String *self, const char *str);
-static char *string_front(String *self);
-static char *string_back(String *self);
+/* ====== static 函数前向声明（由 X-Macro 生成） ====== */
+#define X(name, ret, params) static ret string_##name params;
+STRING_OPS
+#undef X
 
-/* ---------- 默认操作表（提前到这里，因为声明已可见） ---------- */
-static const StringOps string_default_ops = {.init = string_init,
-											 .destroy = string_destroy,
-											 .push = string_push,
-											 .pop_back = string_pop_back,
-											 .clear = string_clear,
-											 .size = string_size,
-											 .capacity = string_capacity,
-											 .c_str = string_c_str,
-											 .assign = string_assign,
-											 .front = string_front,
-											 .back = string_back};
+/* ---------- 默认操作表（由 X-Macro 生成） ---------- */
+static const StringOps string_default_ops = {
+#define X(name, ret, params) .name = string_##name,
+	STRING_OPS
+#undef X
+};
 
 /* ---------- 函数实现 ---------- */
 static void string_init(String *self) {
