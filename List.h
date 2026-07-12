@@ -27,16 +27,9 @@
     X(TYPE, size_t, size, (List_##TYPE * self))                         \
     X(TYPE, void, clear, (List_##TYPE * self))
 
-/* X-Macro 展开器 ①: 生成操作表结构中的函数指针字段 */
-#define LIST_OPS_STRUCT_FIELD(TYPE, ret, name, params) ret(*name) params;
-
-/* X-Macro 展开器 ②: 生成 static 函数前向声明 */
+/* X-Macro 展开器: 生成 static 函数前向声明 */
 #define LIST_OPS_FWD_DECL(TYPE, ret, name, params) \
     static ret list_##TYPE##_##name params;
-
-/* X-Macro 展开器 ③: 生成操作表初始化项 */
-#define LIST_OPS_TABLE_ENTRY(TYPE, ret, name, params) \
-    .name = list_##TYPE##_##name,
 
 #define DEFINE_LIST(TYPE)                                                      \
     /* ---------- 节点结构 ---------- */                                       \
@@ -48,29 +41,18 @@
                                                                                \
     /* 前向声明 */                                                             \
     typedef struct List_##TYPE List_##TYPE;                                    \
-    typedef struct ListOps_##TYPE ListOps_##TYPE;                              \
-                                                                               \
-    /* ---------- 操作表结构 ---------- */                                     \
-    struct ListOps_##TYPE {                                                    \
-        LIST_OPS(LIST_OPS_STRUCT_FIELD, TYPE)                                  \
-    };                                                                         \
                                                                                \
     /* ---------- 链表主结构 ---------- */                                     \
     struct List_##TYPE {                                                       \
         ListNode_##TYPE* head;                                                 \
         ListNode_##TYPE* tail;                                                 \
         size_t count;                                                          \
-        const ListOps_##TYPE* ops;                                             \
     };                                                                         \
                                                                                \
     /* ====== 所有 static 函数前向声明 ====== */                               \
     static ListNode_##TYPE* list_##TYPE##_node_ptr(List_##TYPE* self,          \
                                                    size_t index);              \
     LIST_OPS(LIST_OPS_FWD_DECL, TYPE)                                          \
-                                                                               \
-    /* ---------- 默认操作表实例 ---------- */                                 \
-    static const ListOps_##TYPE list_##TYPE##_ops = {                          \
-        LIST_OPS(LIST_OPS_TABLE_ENTRY, TYPE)};                                 \
                                                                                \
     /* ---------- 内部定位辅助函数 ---------- */                               \
     static ListNode_##TYPE* list_##TYPE##_node_ptr(List_##TYPE* self,          \
@@ -94,8 +76,7 @@
         self->head = NULL;                                                     \
         self->tail = NULL;                                                     \
         self->count = 0;                                                       \
-        self->ops = &list_##TYPE##_ops;                                        \
-    }                                                                          \
+        }                                                                          \
                                                                                \
     static void list_##TYPE##_destroy(List_##TYPE* self) {                     \
         ListNode_##TYPE* cur = self->head;                                     \
