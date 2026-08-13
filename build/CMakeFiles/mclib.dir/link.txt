@@ -1,0 +1,2 @@
+E:\Dev_Evens\_LLVM\clang+llvm-22.1.8-x86_64-pc-windows-msvc\clang+llvm-22.1.8-x86_64-pc-windows-msvc\bin\llvm-ar.exe qc lib\mclib.lib CMakeFiles/mclib.dir/src/mystring.c.obj
+E:\Dev_Evens\_LLVM\clang+llvm-22.1.8-x86_64-pc-windows-msvc\clang+llvm-22.1.8-x86_64-pc-windows-msvc\bin\llvm-ranlib.exe lib\mclib.lib
