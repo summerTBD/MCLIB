@@ -87,12 +87,12 @@ clean: CMakeFiles/test_demo.dir/clean
 CMakeFiles/mclib.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mclib.dir\build.make CMakeFiles/mclib.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mclib.dir\build.make CMakeFiles/mclib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=D:\MyProjects\MCLIB\build\CMakeFiles --progress-num=1,2 "Built target mclib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=D:\MyProjects\MCLIB\build\CMakeFiles --progress-num=1,2,3 "Built target mclib"
 .PHONY : CMakeFiles/mclib.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/mclib.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\MyProjects\MCLIB\build\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\MyProjects\MCLIB\build\CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/mclib.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\MyProjects\MCLIB\build\CMakeFiles 0
 .PHONY : CMakeFiles/mclib.dir/rule
@@ -104,7 +104,7 @@ mclib: CMakeFiles/mclib.dir/rule
 # codegen rule for target.
 CMakeFiles/mclib.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\mclib.dir\build.make CMakeFiles/mclib.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=D:\MyProjects\MCLIB\build\CMakeFiles --progress-num=1,2 "Finished codegen for target mclib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=D:\MyProjects\MCLIB\build\CMakeFiles --progress-num=1,2,3 "Finished codegen for target mclib"
 .PHONY : CMakeFiles/mclib.dir/codegen
 
 # clean rule for target.
@@ -119,12 +119,12 @@ CMakeFiles/mclib.dir/clean:
 CMakeFiles/test_demo.dir/all: CMakeFiles/mclib.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_demo.dir\build.make CMakeFiles/test_demo.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_demo.dir\build.make CMakeFiles/test_demo.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=D:\MyProjects\MCLIB\build\CMakeFiles --progress-num=3,4 "Built target test_demo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=D:\MyProjects\MCLIB\build\CMakeFiles --progress-num=4,5 "Built target test_demo"
 .PHONY : CMakeFiles/test_demo.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/test_demo.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\MyProjects\MCLIB\build\CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\MyProjects\MCLIB\build\CMakeFiles 5
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/test_demo.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\MyProjects\MCLIB\build\CMakeFiles 0
 .PHONY : CMakeFiles/test_demo.dir/rule
@@ -136,7 +136,7 @@ test_demo: CMakeFiles/test_demo.dir/rule
 # codegen rule for target.
 CMakeFiles/test_demo.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_demo.dir\build.make CMakeFiles/test_demo.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=D:\MyProjects\MCLIB\build\CMakeFiles --progress-num=3,4 "Finished codegen for target test_demo"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=D:\MyProjects\MCLIB\build\CMakeFiles --progress-num=4,5 "Finished codegen for target test_demo"
 .PHONY : CMakeFiles/test_demo.dir/codegen
 
 # clean rule for target.

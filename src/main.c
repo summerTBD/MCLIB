@@ -1,14 +1,16 @@
-#include "mystring.h"
+#include "my_arena.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 int main() {
-    char ss[100];
-    scanf("%s", ss);
-    // 新建一个mystring
-    // 别忘了销毁
-    mystring* ms = mystring_from_cstr(ss);
-    printf("%s", mystring_cstr(ms));
-    MYSTRING_DROP(ms);
+    my_arena* arena = arena_create(1024 * 1024);
+    int* a = arena_alloc(arena, sizeof(int));
+    char* b = arena_alloc(arena, sizeof(char));
+    *a = 10;
+    *b = 'a';
+    printf("a is %d: \n", *a);
+    printf("b is %c: \n", *b);
+
+    arena_destroy(arena);
     return 0;
 }

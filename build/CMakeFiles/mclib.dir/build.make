@@ -71,32 +71,49 @@ include CMakeFiles/mclib.dir/flags.make
 CMakeFiles/mclib.dir/codegen:
 .PHONY : CMakeFiles/mclib.dir/codegen
 
-CMakeFiles/mclib.dir/src/mystring.c.obj: CMakeFiles/mclib.dir/flags.make
-CMakeFiles/mclib.dir/src/mystring.c.obj: CMakeFiles/mclib.dir/includes_C.rsp
-CMakeFiles/mclib.dir/src/mystring.c.obj: D:/MyProjects/MCLIB/src/mystring.c
-CMakeFiles/mclib.dir/src/mystring.c.obj: CMakeFiles/mclib.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\MyProjects\MCLIB\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/mclib.dir/src/mystring.c.obj"
-	E:\Dev_Evens\_LLVM\clang+llvm-22.1.8-x86_64-pc-windows-msvc\clang+llvm-22.1.8-x86_64-pc-windows-msvc\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/mclib.dir/src/mystring.c.obj -MF CMakeFiles\mclib.dir\src\mystring.c.obj.d -o CMakeFiles\mclib.dir\src\mystring.c.obj -c D:\MyProjects\MCLIB\src\mystring.c
+CMakeFiles/mclib.dir/src/my_string.c.obj: CMakeFiles/mclib.dir/flags.make
+CMakeFiles/mclib.dir/src/my_string.c.obj: CMakeFiles/mclib.dir/includes_C.rsp
+CMakeFiles/mclib.dir/src/my_string.c.obj: D:/MyProjects/MCLIB/src/my_string.c
+CMakeFiles/mclib.dir/src/my_string.c.obj: CMakeFiles/mclib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\MyProjects\MCLIB\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/mclib.dir/src/my_string.c.obj"
+	E:\Dev_Evens\_LLVM\clang+llvm-22.1.8-x86_64-pc-windows-msvc\clang+llvm-22.1.8-x86_64-pc-windows-msvc\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/mclib.dir/src/my_string.c.obj -MF CMakeFiles\mclib.dir\src\my_string.c.obj.d -o CMakeFiles\mclib.dir\src\my_string.c.obj -c D:\MyProjects\MCLIB\src\my_string.c
 
-CMakeFiles/mclib.dir/src/mystring.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/mclib.dir/src/mystring.c.i"
+CMakeFiles/mclib.dir/src/my_string.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/mclib.dir/src/my_string.c.i"
 	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_C_CREATE_PREPROCESSED_SOURCE
 
-CMakeFiles/mclib.dir/src/mystring.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/mclib.dir/src/mystring.c.s"
+CMakeFiles/mclib.dir/src/my_string.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/mclib.dir/src/my_string.c.s"
+	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_C_CREATE_ASSEMBLY_SOURCE
+
+CMakeFiles/mclib.dir/src/my_arena.c.obj: CMakeFiles/mclib.dir/flags.make
+CMakeFiles/mclib.dir/src/my_arena.c.obj: CMakeFiles/mclib.dir/includes_C.rsp
+CMakeFiles/mclib.dir/src/my_arena.c.obj: D:/MyProjects/MCLIB/src/my_arena.c
+CMakeFiles/mclib.dir/src/my_arena.c.obj: CMakeFiles/mclib.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\MyProjects\MCLIB\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/mclib.dir/src/my_arena.c.obj"
+	E:\Dev_Evens\_LLVM\clang+llvm-22.1.8-x86_64-pc-windows-msvc\clang+llvm-22.1.8-x86_64-pc-windows-msvc\bin\clang.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/mclib.dir/src/my_arena.c.obj -MF CMakeFiles\mclib.dir\src\my_arena.c.obj.d -o CMakeFiles\mclib.dir\src\my_arena.c.obj -c D:\MyProjects\MCLIB\src\my_arena.c
+
+CMakeFiles/mclib.dir/src/my_arena.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/mclib.dir/src/my_arena.c.i"
+	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_C_CREATE_PREPROCESSED_SOURCE
+
+CMakeFiles/mclib.dir/src/my_arena.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/mclib.dir/src/my_arena.c.s"
 	$(CMAKE_COMMAND) -E cmake_unimplemented_variable CMAKE_C_CREATE_ASSEMBLY_SOURCE
 
 # Object files for target mclib
 mclib_OBJECTS = \
-"CMakeFiles/mclib.dir/src/mystring.c.obj"
+"CMakeFiles/mclib.dir/src/my_string.c.obj" \
+"CMakeFiles/mclib.dir/src/my_arena.c.obj"
 
 # External object files for target mclib
 mclib_EXTERNAL_OBJECTS =
 
-lib/mclib.lib: CMakeFiles/mclib.dir/src/mystring.c.obj
+lib/mclib.lib: CMakeFiles/mclib.dir/src/my_string.c.obj
+lib/mclib.lib: CMakeFiles/mclib.dir/src/my_arena.c.obj
 lib/mclib.lib: CMakeFiles/mclib.dir/build.make
 lib/mclib.lib: CMakeFiles/mclib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\MyProjects\MCLIB\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library lib\mclib.lib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\MyProjects\MCLIB\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C static library lib\mclib.lib"
 	$(CMAKE_COMMAND) -P CMakeFiles\mclib.dir\cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\mclib.dir\link.txt --verbose=$(VERBOSE)
 

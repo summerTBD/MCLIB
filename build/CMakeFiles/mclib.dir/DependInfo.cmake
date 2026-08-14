@@ -8,7 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "D:/MyProjects/MCLIB/src/mystring.c" "CMakeFiles/mclib.dir/src/mystring.c.obj" "gcc" "CMakeFiles/mclib.dir/src/mystring.c.obj.d"
+  "D:/MyProjects/MCLIB/src/my_arena.c" "CMakeFiles/mclib.dir/src/my_arena.c.obj" "gcc" "CMakeFiles/mclib.dir/src/my_arena.c.obj.d"
+  "D:/MyProjects/MCLIB/src/my_string.c" "CMakeFiles/mclib.dir/src/my_string.c.obj" "gcc" "CMakeFiles/mclib.dir/src/my_string.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/mclib.dir/src/mystring.c.obj"
-  "CMakeFiles/mclib.dir/src/mystring.c.obj.d"
+  "CMakeFiles/mclib.dir/src/my_arena.c.obj"
+  "CMakeFiles/mclib.dir/src/my_arena.c.obj.d"
+  "CMakeFiles/mclib.dir/src/my_string.c.obj"
+  "CMakeFiles/mclib.dir/src/my_string.c.obj.d"
   "lib/mclib.lib"
   "lib/mclib.pdb"
 )

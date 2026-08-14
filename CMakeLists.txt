@@ -18,7 +18,8 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 
 # 先创建库目标mclib
 add_library(mclib STATIC
-    src/mystring.c
+    src/my_string.c
+    src/my_arena.c
 )
 
 # 再设置头文件路径

@@ -165,29 +165,53 @@ src/main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\test_demo.dir\build.make CMakeFiles/test_demo.dir/src/main.c.s
 .PHONY : src/main.c.s
 
-src/mystring.obj: src/mystring.c.obj
-.PHONY : src/mystring.obj
+src/my_arena.obj: src/my_arena.c.obj
+.PHONY : src/my_arena.obj
 
 # target to build an object file
-src/mystring.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\mclib.dir\build.make CMakeFiles/mclib.dir/src/mystring.c.obj
-.PHONY : src/mystring.c.obj
+src/my_arena.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mclib.dir\build.make CMakeFiles/mclib.dir/src/my_arena.c.obj
+.PHONY : src/my_arena.c.obj
 
-src/mystring.i: src/mystring.c.i
-.PHONY : src/mystring.i
+src/my_arena.i: src/my_arena.c.i
+.PHONY : src/my_arena.i
 
 # target to preprocess a source file
-src/mystring.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\mclib.dir\build.make CMakeFiles/mclib.dir/src/mystring.c.i
-.PHONY : src/mystring.c.i
+src/my_arena.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mclib.dir\build.make CMakeFiles/mclib.dir/src/my_arena.c.i
+.PHONY : src/my_arena.c.i
 
-src/mystring.s: src/mystring.c.s
-.PHONY : src/mystring.s
+src/my_arena.s: src/my_arena.c.s
+.PHONY : src/my_arena.s
 
 # target to generate assembly for a file
-src/mystring.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\mclib.dir\build.make CMakeFiles/mclib.dir/src/mystring.c.s
-.PHONY : src/mystring.c.s
+src/my_arena.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mclib.dir\build.make CMakeFiles/mclib.dir/src/my_arena.c.s
+.PHONY : src/my_arena.c.s
+
+src/my_string.obj: src/my_string.c.obj
+.PHONY : src/my_string.obj
+
+# target to build an object file
+src/my_string.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mclib.dir\build.make CMakeFiles/mclib.dir/src/my_string.c.obj
+.PHONY : src/my_string.c.obj
+
+src/my_string.i: src/my_string.c.i
+.PHONY : src/my_string.i
+
+# target to preprocess a source file
+src/my_string.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mclib.dir\build.make CMakeFiles/mclib.dir/src/my_string.c.i
+.PHONY : src/my_string.c.i
+
+src/my_string.s: src/my_string.c.s
+.PHONY : src/my_string.s
+
+# target to generate assembly for a file
+src/my_string.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\mclib.dir\build.make CMakeFiles/mclib.dir/src/my_string.c.s
+.PHONY : src/my_string.c.s
 
 # Help Target
 help:
@@ -202,9 +226,12 @@ help:
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s
-	@echo ... src/mystring.obj
-	@echo ... src/mystring.i
-	@echo ... src/mystring.s
+	@echo ... src/my_arena.obj
+	@echo ... src/my_arena.i
+	@echo ... src/my_arena.s
+	@echo ... src/my_string.obj
+	@echo ... src/my_string.i
+	@echo ... src/my_string.s
 .PHONY : help
 
 

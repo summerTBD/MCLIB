@@ -1,17 +1,17 @@
-#include "mystring.h"
+#include "my_string.h"
 #include <stdlib.h>
 #include <string.h>
 
-struct mystring {
+struct my_string {
     size_t length;   // 当前长度（不含'\0'）
     size_t capacity; // 已分配容量（不含'\0'）
     char str[];      // 柔性数组，实际分配 capacity+1 字节
 };
 
 // ----- 创建与销毁 -----
-mystring* mystring_new(size_t capacity) {
-    size_t total = sizeof(mystring) + capacity + 1;
-    mystring* ms = (mystring*)malloc(total);
+my_string* my_string_new(size_t capacity) {
+    size_t total = sizeof(my_string) + capacity + 1;
+    my_string* ms = (my_string*)malloc(total);
     if (!ms)
         return NULL;
     ms->length = 0;
@@ -20,11 +20,11 @@ mystring* mystring_new(size_t capacity) {
     return ms;
 }
 
-mystring* mystring_from_cstr(const char* s) {
+my_string* my_string_from_cstr(const char* s) {
     if (!s)
         return NULL;
     size_t l = strlen(s);
-    mystring* ms = mystring_new(l);
+    my_string* ms = my_string_new(l);
     if (!ms)
         return NULL;
     memcpy(ms->str, s, l + 1);
@@ -32,10 +32,10 @@ mystring* mystring_from_cstr(const char* s) {
     return ms;
 }
 
-mystring* mystring_dup(const mystring* ms) {
+my_string* my_string_dup(const my_string* ms) {
     if (!ms)
         return NULL;
-    mystring* new_ms = mystring_new(ms->capacity);
+    my_string* new_ms = my_string_new(ms->capacity);
     if (!new_ms)
         return NULL;
     memcpy(new_ms->str, ms->str, ms->length + 1);
@@ -43,49 +43,49 @@ mystring* mystring_dup(const mystring* ms) {
     return new_ms;
 }
 
-void mystring_drop(mystring* ms) {
+void my_string_drop(my_string* ms) {
     free(ms);
 }
 
 // ----- 信息查询 -----
-size_t mystring_len(const mystring* ms) {
+size_t my_string_len(const my_string* ms) {
     return ms ? ms->length : 0;
 }
 
-size_t mystring_capacity(const mystring* ms) {
+size_t my_string_capacity(const my_string* ms) {
     return ms ? ms->capacity : 0;
 }
 
-const char* mystring_cstr(const mystring* ms) {
+const char* my_string_cstr(const my_string* ms) {
     return ms ? ms->str : NULL;
 }
 
-int mystring_is_empty(const mystring* ms) {
+int my_string_is_empty(const my_string* ms) {
     return ms ? (ms->length == 0) : 1;
 }
 
 // ----- 容量管理 -----
-mystring* mystring_reserve(mystring* ms, size_t new_capacity) {
+my_string* my_string_reserve(my_string* ms, size_t new_capacity) {
     if (!ms)
         return NULL;
     if (new_capacity <= ms->capacity)
         return ms;
-    size_t total = sizeof(mystring) + new_capacity + 1;
-    mystring* new_ms = (mystring*)realloc(ms, total);
+    size_t total = sizeof(my_string) + new_capacity + 1;
+    my_string* new_ms = (my_string*)realloc(ms, total);
     if (!new_ms)
         return NULL;
     new_ms->capacity = new_capacity;
     return new_ms;
 }
 
-mystring* mystring_shrink_to_fit(mystring* ms) {
+my_string* my_string_shrink_to_fit(my_string* ms) {
     if (!ms)
         return NULL;
     if (ms->length == ms->capacity)
         return ms;
     size_t new_cap = ms->length;
-    size_t total = sizeof(mystring) + new_cap + 1;
-    mystring* new_ms = (mystring*)realloc(ms, total);
+    size_t total = sizeof(my_string) + new_cap + 1;
+    my_string* new_ms = (my_string*)realloc(ms, total);
     if (!new_ms)
         return NULL;
     new_ms->capacity = new_cap;
@@ -93,7 +93,7 @@ mystring* mystring_shrink_to_fit(mystring* ms) {
 }
 
 // ----- 修改操作 -----
-mystring* mystring_append_cstr(mystring* ms, const char* s) {
+my_string* my_string_append_cstr(my_string* ms, const char* s) {
     if (!ms || !s)
         return ms;
     size_t add_len = strlen(s);
@@ -104,7 +104,7 @@ mystring* mystring_append_cstr(mystring* ms, const char* s) {
         size_t new_cap = ms->capacity * 2;
         if (new_cap < new_len)
             new_cap = new_len;
-        mystring* new_ms = mystring_reserve(ms, new_cap);
+        my_string* new_ms = my_string_reserve(ms, new_cap);
         if (!new_ms)
             return NULL;
         ms = new_ms;
@@ -114,12 +114,12 @@ mystring* mystring_append_cstr(mystring* ms, const char* s) {
     return ms;
 }
 
-mystring* mystring_append_char(mystring* ms, char c) {
+my_string* my_string_append_char(my_string* ms, char c) {
     if (!ms)
         return NULL;
     if (ms->length + 1 >= ms->capacity) {
         size_t new_cap = ms->capacity ? ms->capacity * 2 : 1;
-        mystring* new_ms = mystring_reserve(ms, new_cap);
+        my_string* new_ms = my_string_reserve(ms, new_cap);
         if (!new_ms)
             return NULL;
         ms = new_ms;
@@ -130,14 +130,14 @@ mystring* mystring_append_char(mystring* ms, char c) {
     return ms;
 }
 
-void mystring_clear(mystring* ms) {
+void my_string_clear(my_string* ms) {
     if (!ms)
         return;
     ms->length = 0;
     ms->str[0] = '\0';
 }
 
-mystring* mystring_truncate(mystring* ms, size_t new_len) {
+my_string* my_string_truncate(my_string* ms, size_t new_len) {
     if (!ms)
         return NULL;
     if (new_len == ms->length)
@@ -152,7 +152,7 @@ mystring* mystring_truncate(mystring* ms, size_t new_len) {
         size_t new_cap = ms->capacity * 2;
         if (new_cap < new_len)
             new_cap = new_len;
-        mystring* new_ms = mystring_reserve(ms, new_cap);
+        my_string* new_ms = my_string_reserve(ms, new_cap);
         if (!new_ms)
             return NULL;
         ms = new_ms;
